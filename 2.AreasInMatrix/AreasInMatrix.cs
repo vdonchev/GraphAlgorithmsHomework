@@ -45,17 +45,17 @@
         {
             visited[row, col] = true;
 
-            if (IsValidCell(row + 1, col, letter))
+            if (IsValidNeighbour(row + 1, col, letter))
                 ExploreArea(row + 1, col, letter);
-            if (IsValidCell(row - 1, col, letter))
+            if (IsValidNeighbour(row - 1, col, letter))
                 ExploreArea(row - 1, col, letter);
-            if (IsValidCell(row, col + 1, letter))
+            if (IsValidNeighbour(row, col + 1, letter))
                 ExploreArea(row, col + 1, letter);
-            if (IsValidCell(row, col - 1, letter))
+            if (IsValidNeighbour(row, col - 1, letter))
                 ExploreArea(row, col - 1, letter);
         }
 
-        private static bool IsValidCell(int row, int col, char letter)
+        private static bool IsValidNeighbour(int row, int col, char letter)
         {
             return (row >= 0 && col >= 0 && row < numsOfRows && col < numOfCols && letter == graph[row][col] && !visited[row, col]);
         }
