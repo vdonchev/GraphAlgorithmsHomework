@@ -20,7 +20,12 @@
 
             GetInput();
             edges.Sort();
+            CheckIfEdgeLeadsToCycle();
+            Print();
+        }
 
+        private static void CheckIfEdgeLeadsToCycle()
+        {
             foreach (Edge edge in edges)
             {
                 if (!childNodes[edge.Start].Contains(edge.End) || !childNodes[edge.End].Contains(edge.Start))
@@ -33,7 +38,7 @@
 
                 visited = new HashSet<string>();
                 isCyclic = false;
-                DeepFirstSearch(edge.Start, edge.End);
+                TraverseGraph(edge.Start, edge.End);
 
                 if (isCyclic)
                 {
@@ -45,8 +50,6 @@
                     childNodes[edge.End].Add(edge.Start);
                 }
             }
-
-            Print();
         }
 
         private static void Print()
@@ -55,7 +58,7 @@
             edgesToRemove.ForEach(Console.WriteLine);
         }
 
-        static void DeepFirstSearch(string startNode, string endNode)
+        static void TraverseGraph(string startNode, string endNode)
         {
             if (!visited.Contains(startNode))
             {
@@ -68,7 +71,7 @@
 
                 for (int i = 0; i < childNodes[startNode].Count; i++)
                 {
-                    DeepFirstSearch(childNodes[startNode][i], endNode);
+                    TraverseGraph(childNodes[startNode][i], endNode);
                 }
             }
         }
