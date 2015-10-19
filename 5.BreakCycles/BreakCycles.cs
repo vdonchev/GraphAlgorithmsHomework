@@ -20,11 +20,11 @@
 
             GetInput();
             edges.Sort();
-            CheckIfEdgeLeadsToCycle();
+            RemoveCyclicEdges();
             Print();
         }
 
-        private static void CheckIfEdgeLeadsToCycle()
+        private static void RemoveCyclicEdges()
         {
             foreach (Edge edge in edges)
             {
