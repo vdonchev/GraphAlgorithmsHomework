@@ -38,18 +38,18 @@
 
                 if (isBoss)
                 {
-                    CalculateSalary(col);
+                    CalculateSalaries(col);
                 }
             }
 
             Console.WriteLine(visited.Sum(n => n.Value));
         }
 
-        private static long CalculateSalary(int node)
+        private static void CalculateSalaries(int node)
         {
             if (visited.ContainsKey(node))
             {
-                return visited[node];
+                return;
             }
 
             long salary = 0;
@@ -59,18 +59,18 @@
                 if (graph[node, child] == 'Y')
                 {
                     hasChilds = true;
-                    salary += CalculateSalary(child);
+                    CalculateSalaries(child);
+                    salary += visited[child];
                 }
             }
 
             if (!hasChilds)
             {
                 visited.Add(node, 1);
-                return 1;
+                return;
             }
 
             visited.Add(node, salary);
-            return salary;
         }
     }
 }
